@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cursor Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+            background-color: #e6f3ff;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        body.dark-mode {
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+        body.dark-mode button {
+            color: #ffffff;
+            background-color: #333355;
+            border-color: #555577;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello Cursor</h1>
+    <p>Test page for Cursor AI activity</p>
+    <div id="counter">Count: 0</div>
+    <button id="btn">Click me</button>
+    <button id="theme-btn">Dark mode</button>
+
+    <script>
+        let count = 0;
+        const counterEl = document.getElementById('counter');
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', () => {
+            count += 1;
+            counterEl.textContent = `Count: ${count}`;
+        })
+
+        const themeBtn = document.getElementById('theme-btn');
+        function applyDarkMode(on) {
+            document.body.classList.toggle('dark-mode', on);
+            themeBtn.textContent = on ? 'Light mode' : 'Dark mode';
+        }
+        applyDarkMode(localStorage.getItem('darkMode') === 'true');
+        themeBtn.addEventListener('click', () => {
+            const on = !document.body.classList.contains('dark-mode');
+            applyDarkMode(on);
+            localStorage.setItem('darkMode', on ? 'true' : 'false');
+        });
+    </script>
+</body>
+</html>
